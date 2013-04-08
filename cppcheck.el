@@ -7,6 +7,8 @@
 ;; version: 0.1
 ;;
 
+(require 'compile)
+
 ;;;###autoload
 (defgroup cppcheck nil
   "*cppcheck"
