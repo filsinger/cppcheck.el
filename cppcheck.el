@@ -212,10 +212,10 @@ files that are on a lower level in the directory tree."
 (defun cppcheck-current-file ()
   "Runs cppcheck on the current file."
   (interactive)
-  (cppcheck-file (shell-quote-argument (buffer-file-name))) )
+  (cppcheck-file (shell-quote-argument (file-name-nondirectory (buffer-file-name))) ))
 
 ;;;###autoload
 (defun cppcheck-current-file-check-config ()
   "Runs cppcheck with the '--check-config' option"
   (interactive)
-  (cppcheck-file (shell-quote-argument (buffer-file-name)) "--check-config") )
+  (cppcheck-file (shell-quote-argument (file-name-nondirectory (buffer-file-name))) "--check-config") )
