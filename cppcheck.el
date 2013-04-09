@@ -124,8 +124,8 @@ files that are on a lower level in the directory tree."
       (let (result)
         (dolist (element cppcheck-include-path-list)
           (setq result (if (not (stringp result))
-                           (format " -I %s" (shell-quote-argument element))
-                         (format "%s -I %s" result (shell-quote-argument element))))
+                           (format " -I %s" element)
+                         (format "%s -I %s" result element)))
           ) result) ""))
 
 (defun cppcheck-args-get-hidden-configurations ()
@@ -191,7 +191,7 @@ files that are on a lower level in the directory tree."
           (if (stringp cppcheck-platform) (concat " --platform=" cppcheck-platform) "")
           (if (stringp cppcheck-template) (concat " --template='" cppcheck-template "'") "" )
           (if (stringp additional-args) (concat " " additional-args) "")
-          (shell-quote-argument filename) ))
+          filename ))
 
 ;;;###autoload
 (define-compilation-mode cppcheck-results-mode "cppcheck"
@@ -212,10 +212,10 @@ files that are on a lower level in the directory tree."
 (defun cppcheck-current-file ()
   "Runs cppcheck on the current file."
   (interactive)
-  (cppcheck-file (shell-quote-argument (file-name-nondirectory (buffer-file-name))) ))
+  (cppcheck-file (buffer-file-name)) )
 
 ;;;###autoload
 (defun cppcheck-current-file-check-config ()
   "Runs cppcheck with the '--check-config' option"
   (interactive)
-  (cppcheck-file (shell-quote-argument (file-name-nondirectory (buffer-file-name))) "--check-config") )
+  (cppcheck-file (buffer-file-name) "--check-config") )
